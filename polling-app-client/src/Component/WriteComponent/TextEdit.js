@@ -208,7 +208,7 @@ class TextEdit extends Component {
                 {this.state.router == 'report' ?
                     <div className="information" >
                         <InputGroup compact>
-                        <Input value="업무" style={{width:"20%"}} />
+                        <Input value="업무" style={{width:"20%",pointerEvents:"none"}} />
                         <Selecter onUserTaskChange={this.onUserTaskChange} userTask={this.state.userTask} />
                         </InputGroup>
                         <InputGroup compact style={{marginTop:"10px"}}>

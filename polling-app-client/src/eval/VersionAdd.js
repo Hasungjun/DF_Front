@@ -36,11 +36,12 @@ class VersionAdd extends Component {
             },
             dataSource: []
         });
-        this.props.refresh();
+       // this.props.refresh();
     }
 
     dataSourceCallback = (childDataSource) => {
-        // console.log(childDataSource);
+        console.log(childDataSource);
+        
         this.setState({
             dataSource: childDataSource
         });
@@ -56,15 +57,16 @@ class VersionAdd extends Component {
             }
         });
     }
-    handleOk(event) {
+    handleOk  = async (event) => {
         event.preventDefault();
 
         const versionValue = {
             version: this.state.version.value,
             dataSource: this.state.dataSource
         }
-        setEvalVersion(versionValue)
+        await setEvalVersion(versionValue)
             .then(response => {
+                // console.log(response);
                 notification.success({ // 옆에 표시 띄우기
                     message: 'Message',
                     description: "Successfully saved version! Automatically refreshes now!"
@@ -85,7 +87,7 @@ class VersionAdd extends Component {
         });
 
         // 리렌더링 하기
-        // this.props.refresh();
+       // this.props.refresh();
     }
     render() {
         return (

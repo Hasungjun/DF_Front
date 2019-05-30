@@ -48,9 +48,6 @@ class AppHeader extends Component {
           menuItems = [
             <Menu.Item key="/login">
               <Link to="/login">Login</Link>
-            </Menu.Item>,
-            <Menu.Item key="/signup">
-              <Link to="/signup">signup</Link>
             </Menu.Item>
                              
           ];

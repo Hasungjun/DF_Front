@@ -108,7 +108,7 @@ class ItemTable extends React.Component {
       dataSource: [{
         key: 1,
         itemNo: 1,
-        content: '보고서',
+        content: '평가항목을 입력해주세요.',
       }],
       count: 2,
       show: this.props.show, // modal=하단에 버튼 나타남,
@@ -162,6 +162,7 @@ class ItemTable extends React.Component {
     this.setState({ dataSource: newData });
 
     // version에 새로 등록된 newData 넘겨줌
+    // console.log(newData);
     this.props.getDataSource(newData);
   }
   

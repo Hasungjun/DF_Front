@@ -365,7 +365,7 @@ class EvalRank extends Component {
     }
     return (
       <div>
-        <Card title="평가 순위">
+        <Card title="평가 순위" headStyle={{backgroundColor:"#00B1B6",color:"#FBFBFB",fontWeight:"bold"}}>
           <Table
             dataSource={this.state.evalDatas}
             columns={this.state.columns} />
