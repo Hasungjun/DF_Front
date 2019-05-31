@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Input, Form, Modal, notification, Button } from 'antd';
 import FormItem from 'antd/lib/form/FormItem';
-
+import {
+    Link,
+    withRouter
+} from 'react-router-dom';
 import ItemTable from './ItemTable';
 import { setEvalVersion } from '../util/APIUtils';
 
@@ -13,18 +16,30 @@ class VersionAdd extends Component {
             dataSource: null,
             version: {
                 value: ''
-            }
+            },
+            states:"off",
+            data:[{
+                key: 1,
+                itemNo: 1,
+                content: '평가항목을 입력해주세요.'
+            }]
+
         }
 
         this.handleOk = this.handleOk.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.showModal = this.showModal.bind(this);
     }
 
     // versionAdd
     showModal = () => {
         this.setState({
             visible: true,
+            states:"on",
         });
+        
+        console.log(this.state.states);
     }
 
     handleCancel = (e) => {
@@ -34,11 +49,15 @@ class VersionAdd extends Component {
             version: {
                 value: ''
             },
-            dataSource: []
+            dataSource: [],
+            states:"off",
+            
         });
+        <Link to="/ManageEvalItem"/>
+        console.log(this.state.data);
+
        // this.props.refresh();
     }
-
     dataSourceCallback = (childDataSource) => {
         console.log(childDataSource);
         
@@ -102,7 +121,9 @@ class VersionAdd extends Component {
                     onCancel={this.handleCancel}>
                     <ItemTable 
                         show="modal" 
-                        getDataSource={this.dataSourceCallback} />
+                        getDataSource={this.dataSourceCallback}
+                        states={this.state.states}
+                        dataSource={this.state.data} />
                     <div style={{ marginTop: "10px" }}>
                         <Form>
                             <FormItem>
@@ -122,4 +143,4 @@ class VersionAdd extends Component {
     }
 }
 
-export default VersionAdd;
+export default withRouter(VersionAdd);

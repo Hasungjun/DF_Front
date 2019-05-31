@@ -328,7 +328,7 @@ class Eval extends Component {
   }
 
   refresh = () => {
-    window.location.reload();
+    //window.location.reload();
   }
 
   render() {

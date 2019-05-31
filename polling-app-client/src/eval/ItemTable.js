@@ -13,11 +13,10 @@ const EditableRow = ({ form, index, ...props }) => (
 
 const EditableFormRow = Form.create()(EditableRow);
 
-class EditableCell extends React.Component {
+class EditableCell extends Component {
   state = {
     editing: false,
   }
-
   toggleEdit = () => {
     const editing = !this.state.editing;
     this.setState({ editing }, () => {
@@ -91,7 +90,7 @@ class EditableCell extends React.Component {
   }
 }
 
-class ItemTable extends React.Component {
+class ItemTable extends Component {
   constructor(props) {
     super(props);
     this.columns = [{
@@ -105,18 +104,26 @@ class ItemTable extends React.Component {
     }];
 
     this.state = {
-      dataSource: [{
-        key: 1,
-        itemNo: 1,
-        content: '평가항목을 입력해주세요.',
-      }],
+      dataSource: this.props.dataSource,
       count: 2,
       show: this.props.show, // modal=하단에 버튼 나타남,
-      state: this.props.state // 상태가 버전수정인지 평가하기인지..
+      state: this.props.state, // 상태가 버전수정인지 평가하기인지..
+      states: this.props.states
     };
-    // console.log(this.state.state);
+    console.log(this.state.states);
   }
-
+  
+  componentDidUpdate(prevProps){
+    if (this.props.states !== prevProps.states) {
+          this.setState({
+                dataSource:[{ 
+                  key: 1,
+                  itemNo: 1,
+                  content: '평가항목을 입력해주세요.'}],
+                  count: 2,
+          })
+    }
+}
   // render 후 props로부터 받는 값이 변동이 생겼을 때 state 값을 바꿔준다.
   static getDerivedStateFromProps(nextProps, prevProps) {
     if (nextProps.itemList !== prevProps.itemList) {
@@ -139,7 +146,7 @@ class ItemTable extends React.Component {
       count: count + 1,
     });
   }
-  
+
   componentWillMount() {
     if(this.state.state === 'eval') {
       // console.log("here!");
@@ -193,6 +200,7 @@ class ItemTable extends React.Component {
 
     return (
       <div>
+
         <Table
           components={components}
           rowClassName={() => 'editable-row'}

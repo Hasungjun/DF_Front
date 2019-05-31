@@ -4,7 +4,10 @@ import NotFound from '../common/NotFound';
 import ServerError from '../common/ServerError';
 import { Button } from 'antd/lib/radio';
 import { searchEval } from '../util/APIUtils';
-
+import {
+  Link,
+  withRouter
+} from 'react-router-dom';
 class EmpButton extends Component {
   constructor(props) {
     super(props);
@@ -88,4 +91,4 @@ class EmpButton extends Component {
   }
 }
 
-export default EmpButton;
+export default withRouter(EmpButton);
