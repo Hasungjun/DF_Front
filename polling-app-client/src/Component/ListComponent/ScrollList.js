@@ -109,7 +109,7 @@ class InfiniteListExample extends Component {
                 <br /><br />    
             </div>
 
-      <div className="demo-infinite-container">
+      <div className="demo-infinite-container" style={{height:"100%"}}>
         <InfiniteScroll
           initialLoad={false}
           pageStart={0}       

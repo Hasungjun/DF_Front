@@ -1,3 +1,4 @@
+    
 import React, { Component } from 'react';
 import LoadingIndicator from '../common/LoadingIndicator';
 import NotFound from '../common/NotFound';
@@ -45,7 +46,6 @@ class ModalInput extends Component {
       <Input
         name={this.state.record.itemNo}
         placeholder={this.state.score}
-        // defaultValue={this.state.score}
         style={{ cursor:'default' }}
         onChange={event => this.props.handleInputChange(event,this.state.record)}
         />

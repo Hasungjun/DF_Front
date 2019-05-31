@@ -34,7 +34,7 @@ class Report extends Component {
         }
         this.state.value.search='';
         this.state.value.from=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
-        this.state.value.to=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+(d.getDate()+1);
+        this.state.value.to=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+(d.getDate());
         this.load = this.load.bind(this);
     }
     success = () => {
@@ -54,6 +54,7 @@ class Report extends Component {
         this.load();
     }
     load() {
+      this.state.value.to =  this.state.value.to+' 23:59:59';
         this.setState({
             isLoading: true,
         });

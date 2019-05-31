@@ -17,10 +17,10 @@ class Eval extends Component {
     super(props);
     this.state = {
       columns: [{
-        title: '업무 번호',
-        dataIndex: 'id',
-        key: 'id',
-        ...this.getColumnSearchProps('id')
+        title: '번호',
+        dataIndex: 'taskNo',
+        key: 'taskNo',
+        ...this.getColumnSearchProps('taskNo')
       }, {
         title: '업무 제목',
         dataIndex: 'title',
@@ -37,7 +37,9 @@ class Eval extends Component {
       taskId: 0,
       userTasks: null,
       isCompleted: false, 
-      scores: []
+      scores: [],
+      noCount: 1,
+      successEvalUserTaskId: 0
     }
   }
   getColumnSearchProps = (dataIndex) => ({
@@ -104,6 +106,11 @@ class Eval extends Component {
     // 팀장권한에서 전체 업무리스트보기
     getTask()
       .then(response => {
+        console.log(response);
+        response.map((item) => {
+          item.taskNo =  this.state.noCount;
+          this.state.noCount = ++this.state.noCount;
+        });
         this.setState({
           evalDatas: response,
           isLoading: false
@@ -128,11 +135,11 @@ class Eval extends Component {
     this.setState({
       columns: this.state.columns.concat({
         title: '평가',
-        dataIndex: 'id',
-        key: 'id',
-        render: (text) => {
+        dataIndex: 'eval',
+        key: 'eval',
+        render: (text, record) => {
           let getUser = () => {
-            this.getUser(text);
+            this.getUser(record);
           }
           return <Button onClick={getUser}>평가</Button>
         }
@@ -141,16 +148,18 @@ class Eval extends Component {
     this.load();
   }
 
-  getUser = (childTaskId) => {
+  getUser = (record) => {
+    const taskId = record.id;
+
     this.setState({
       isLoading: true,
     });
 
-    getByTask(childTaskId)
+    getByTask(taskId)
       .then(response => {
         this.setState({
           userTasks: response,
-          taskId: childTaskId
+          taskId: taskId
         });
 
         // console.log(this.state.userTasks); // 업무리스트에서 평가버튼을 누르면 업무를 가진 사원리스트 뜬다
@@ -196,11 +205,18 @@ class Eval extends Component {
     })
   }
   
+  changeButtonName = async (successEvalUserTaskId) => {
+    console.log(successEvalUserTaskId);
+    await this.setState({
+      successEvalUserTaskId: successEvalUserTaskId
+    });
+  }
+
   // 평가된 업무일 경우 db에서 값을 받아와 셋팅
   setScore = async () => {
     this.setState({
       isLoading: true
-    })
+    });
 
     const taskId = this.state.userTask.id;
 
@@ -219,7 +235,7 @@ class Eval extends Component {
         this.setState({
           report: reportValue
         });
-        console.log(this.state.report);
+        //console.log(this.state.report);
       })
       .catch(error => {
         console.log(error);
@@ -272,7 +288,7 @@ class Eval extends Component {
       // 최신 버전이름으로 json 객체 가져오기
       await getVersionObj(this.state.version)
         .then(response => {
-          console.log(response);
+          // console.log(response);
           let arr = new Array();
           response.map( (item) => {
             arr.push(item.evalItem);
@@ -286,7 +302,7 @@ class Eval extends Component {
         .catch(error => {
           console.log(error)
         })
-      console.log(this.state.itemList);
+      // console.log(this.state.itemList);
 
       if(this.state.itemList == []) {
         // 평가항목이 없는경우
@@ -357,12 +373,14 @@ class Eval extends Component {
             evalButtonVisible={this.state.evalButtonVisible}
             buttonName={this.state.buttonName}
             getButtonName={this.getButtonName}
+            successEvalUserTaskId={this.state.successEvalUserTaskId}
             />
 
           {/* 평가 component */}
           <EvalModal
             report={this.state.report}
             buttonName={this.state.buttonName}
+            changeButtonName={this.changeButtonName}
             visible={this.state.visible}
             modalControl={this.modalControl}
             userTask={this.state.userTask} // 평가할 사원의 업무

@@ -93,19 +93,19 @@ class RankModal extends Component {
               defaultValue="선택"
               onChange={this.onSelectYear}
               autoClearSearchValue={this.state.clear} >
-                { this.props.yearList.map((value) => <Option value={value}>{value}</Option> ) }                
+                { this.props.yearList.map((value) => <Option key={value} value={value}>{value}</Option> ) }                
             </Select>
             <Select 
               style={{ marginLeft: 10, width: "100px" }}
               defaultValue="선택"
               onChange={this.onChange} >
-                { OPTIONS.map((value) => <Option value={value}>{value}</Option> ) }                
+                { OPTIONS.map((value) => <Option key={value} value={value}>{value}</Option> ) }                
             </Select>
             <Select 
                 style={{  marginLeft: 10, width: "100px" }}
                 defaultValue="선택"
                 onChange={this.onSubChange}>
-                  {this.state.subSelected.map((value) => <Option value={value}>{value}</Option>)}
+                  {this.state.subSelected.map((value) => <Option key={value} value={value}>{value}</Option>)}
             </Select>
             <Button 
               type="primary"

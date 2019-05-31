@@ -51,12 +51,9 @@ class VersionAdd extends Component {
             },
             dataSource: [],
             states:"off",
-            
         });
         <Link to="/ManageEvalItem"/>
         console.log(this.state.data);
-
-       // this.props.refresh();
     }
     dataSourceCallback = (childDataSource) => {
         console.log(childDataSource);
@@ -102,11 +99,11 @@ class VersionAdd extends Component {
             version: {
                 value: ''
             },
-            dataSource: []
+            dataSource: [],
+            states:"off",
         });
-
-        // 리렌더링 하기
-       // this.props.refresh();
+        this.props.changeItemList(true);
+        <Link to="/ManageEvalItem"/>
     }
     render() {
         return (
@@ -123,7 +120,8 @@ class VersionAdd extends Component {
                         show="modal" 
                         getDataSource={this.dataSourceCallback}
                         states={this.state.states}
-                        dataSource={this.state.data} />
+                        dataSource={this.state.data}
+                        editable={true} />
                     <div style={{ marginTop: "10px" }}>
                         <Form>
                             <FormItem>

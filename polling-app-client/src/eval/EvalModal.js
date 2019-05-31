@@ -1,3 +1,4 @@
+    
 import React, { Component } from 'react';
 
 import LoadingIndicator from '../common/LoadingIndicator';
@@ -52,7 +53,7 @@ class EvalModal extends Component {
         userTask: this.props.userTask,
         userId: this.props.userTask.user.id
       }
-      console.log(evalUserTask);
+      // console.log(evalUserTask);
       if(this.props.buttonName == '수정') {
         updateEvalScore(evalUserTask)
           .then(response => {
@@ -76,11 +77,15 @@ class EvalModal extends Component {
               message: 'Message',
               description: "평가저장을 실패하였습니다."
             })
-          }); 
+          });  
+          // 버튼 이름 평가 -> 수정으로 고침
+          const successEvalUserTaskId = evalUserTask.userTask.id;
+          console.log(successEvalUserTaskId);
+          this.props.changeButtonName(successEvalUserTaskId);
+  
       }
       scoreRange = false;
       this.props.modalControl(false);
-      this.props.refresh(); 
     }    
   }
 
@@ -105,8 +110,8 @@ class EvalModal extends Component {
       isLoading:true,
       columns: this.state.columns.concat({
           title: '점수',
-          dataIndex: 'score',
-          key: 'score',  
+          dataIndex: 'evalScore',
+          key: 'evalScore',  
           width: '40%',        
           render: (text, record) => { // record = version에 따른 itemList            console.log(record);
             if(record.content == this.props.report.key) {

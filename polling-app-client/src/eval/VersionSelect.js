@@ -54,6 +54,13 @@ class VersionSelect extends Component {
     });
   }
 
+  componentDidUpdate(props) {
+    if(props.updateVersion != this.props.updateVersion) {
+      this.loadVersion();
+      this.props.changeItemList(false);
+    }
+  }
+
   // Select a version to get a list of items.
   handleChange = (selectedVersion) => {
     console.log(`selected ${selectedVersion}`);
@@ -103,7 +110,7 @@ class VersionSelect extends Component {
             style={{ width: 200 }} 
             onChange={this.handleChange}
             disabled={this.props.disabled} >
-            { this.state.versionList.map((date) => <Option value={date}>{ date }</Option>) }
+            { this.state.versionList.map((item) => <Option key={item}  value={item}>{ item }</Option>) }
           </Select>
         </InputGroup>
       </div>

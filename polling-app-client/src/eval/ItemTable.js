@@ -100,7 +100,7 @@ class ItemTable extends Component {
     }, {
       title: 'content',
       dataIndex: 'content',
-      editable: true
+      editable: this.props.editable
     }];
 
     this.state = {

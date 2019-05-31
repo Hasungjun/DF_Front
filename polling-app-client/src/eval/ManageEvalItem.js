@@ -11,7 +11,8 @@ class ManageEvalItem extends Component {
         super(props);
         this.state = {
             itemList: null,
-            version: ''
+            version: '',
+            updateVersion: false
         };
     }
 
@@ -31,19 +32,32 @@ class ManageEvalItem extends Component {
         });
     }
     
+    changeItemList = (toggle) => {
+        console.log('h1');
+        // 최신 버전 가져오기
+        this.setState({
+            updateVersion: toggle
+        })
+    }
+    
     render() {
         return (
             <div className="Option8">
-                 <Card title="평가 항목 관리" headStyle={{backgroundColor:"#00B1B6",color:"#FBFBFB",fontWeight:"bold"}}>
-                <VersionSelect 
-                    getItemList={this.itemListCallback}
-                    disabled={false} 
-                    setVersion={this.setVersion} />
-                <ItemTable itemList={this.state.itemList} />
-                <VersionAdd 
-                    refresh={ this.refresh }
-                    setVersion={this.setVersion}/>
-                    </Card>
+                <Card title="평가 항목 관리" headStyle={{backgroundColor:"#00B1B6",color:"#FBFBFB",fontWeight:"bold"}}>
+                   <VersionSelect 
+                        getItemList={this.itemListCallback}
+                        disabled={false} 
+                        setVersion={this.setVersion}
+                        updateVersion={this.state.updateVersion}
+                        changeItemList={this.changeItemList} />
+                    <ItemTable 
+                        itemList={this.state.itemList}
+                        editable={false} />
+                    <VersionAdd 
+                        refresh={ this.refresh }
+                        setVersion={this.setVersion}
+                        changeItemList={this.changeItemList}/>
+                </Card>
             </div>
         );
     }

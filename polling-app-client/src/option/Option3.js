@@ -102,6 +102,7 @@ class Option3 extends Component {
       }
 
     loadReport(data) {
+        data.to = data.to + ' 23:59:59';
       this.setState({
           isLoading: true
       });

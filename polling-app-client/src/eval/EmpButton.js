@@ -14,7 +14,8 @@ class EmpButton extends Component {
     this.state = {
       record: this.props.record, // 업무리스트에서 평가를 눌렀을 때 그 업무를 수행하고있는 사원리스트
       buttonName: "평가",
-      visible: false
+      visible: false,
+      successEvalUserTaskId: this.props.successEvalUserTaskId
     }
   }
 
@@ -65,6 +66,20 @@ class EmpButton extends Component {
     this.setVisible();
   }
 
+  componentDidUpdate(prevProps){
+    console.log(prevProps);
+    console.log(this.state.record);
+    if(prevProps.successEvalUserTaskId != this.props.successEvalUserTaskId) {
+      // 레코드 번호 따서 그부분만 수정으로 만들기
+      if(this.state.record.id == this.props.successEvalUserTaskId) {
+        this.setState({
+          successEvalUserTaskId: this.props.successEvalUserTaskId,
+          buttonName: "수정"
+        });
+      }      
+    }
+  }
+  
   evalModal = () => {
     this.props.evalModal(this.state.record);
     this.props.getButtonName(this.state.buttonName);

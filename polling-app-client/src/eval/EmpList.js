@@ -49,6 +49,7 @@ class EmpList extends Component {
         key: 'evalId',
         render: (text, record) => {
           return <EmpButton
+                    successEvalUserTaskId={this.props.successEvalUserTaskId}
                     evalModal={this.evalModal}
                     evalButtonVisible={this.props.evalButtonVisible}
                     record={record}

@@ -13,9 +13,9 @@ class EvalRank extends Component {
     this.state = {
       columns: [{
         title: '업무 번호',
-        dataIndex: 'id',
-        key: 'id',
-        ...this.getColumnSearchProps('id')
+        dataIndex: 'taskNo',
+        key: 'taskNo',
+        ...this.getColumnSearchProps('taskNo')
       }, {
         title: '업무 제목',
         dataIndex: 'title',
@@ -125,6 +125,9 @@ class EvalRank extends Component {
     getTask()
       .then(response => {
         // console.log(response);
+        response.map((item) => {
+          item.taskNo =  item.id;
+        });
         this.setState({
           evalDatas: response,
           isLoading: false
