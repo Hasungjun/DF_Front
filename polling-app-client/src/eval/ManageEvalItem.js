@@ -18,20 +18,17 @@ class ManageEvalItem extends Component {
     }
 
     itemListCallback = (childItemList) => {
-        console.log(childItemList);
         childItemList.map((item) => {
-            item.itemNo = this.state.nCount++;
+            item.itemNo = this.state.nCount;
+            this.setState({
+                nCount: this.state.nCount + 1
+            })
         })
         this.setState({
             itemList: childItemList,
             nCount: 1
         });
     }
-
-    refresh = () => {
-        window.location.reload();
-    }
-
     setVersion = (childVersion) => {
         this.setState({
           version: childVersion
@@ -39,8 +36,6 @@ class ManageEvalItem extends Component {
     }
     
     changeItemList = (toggle) => {
-        console.log('h1');
-        // 최신 버전 가져오기
         this.setState({
             updateVersion: toggle
         })
@@ -60,7 +55,7 @@ class ManageEvalItem extends Component {
                         itemList={this.state.itemList}
                         editable={false} />
                     <VersionAdd 
-                        refresh={ this.refresh }
+                        // refresh={ this.refresh }
                         setVersion={this.setVersion}
                         changeItemList={this.changeItemList}/>
                 </Card>

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { FileService } from './file-service.jsx';
 import { Avatar } from 'antd';
 import {BASE_URL} from '../../constants/index'
-import { Upload, Button, Icon } from 'antd';
 import './fileUploader.css';
+
 export class FileUploader extends Component {
     constructor() {
         super();

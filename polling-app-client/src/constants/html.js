@@ -210,9 +210,9 @@ String.prototype.byteLength = function() {
     for(var idx=0; idx < this.length; idx++) {
         var c = escape(this.charAt(idx));
          
-        if( c.length==1 ) l ++;
-        else if( c.indexOf("%u")!=-1 ) l += 2;
-        else if( c.indexOf("%")!=-1 ) l += c.length/3;
+        if( c.length===1 ) l ++;
+        else if( c.indexOf("%u")!==-1 ) l += 2;
+        else if( c.indexOf("%")!==-1 ) l += c.length/3;
     }
      
     return l;

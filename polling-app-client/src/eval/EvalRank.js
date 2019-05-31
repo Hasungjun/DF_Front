@@ -140,14 +140,16 @@ class EvalRank extends Component {
     });
     getTask()
       .then(response => {
-        let orderBy = new Array();
+        let orderBy = [];
         let index = 0;
         response.map((item) => {
           orderBy.push(response[response.length - (++index)]);
         });
         orderBy.map((item) => {
           item.taskNo =  this.state.noCount;
-          this.state.noCount = ++this.state.noCount;
+          this.setState({
+            noCount: this.state.noCount + 1
+          })
         });
         this.setState({
           evalDatas: orderBy,
@@ -195,7 +197,7 @@ class EvalRank extends Component {
 
     // 검색할 사원 list setting
     let tmpTaskId = {
-      taskId: new Array(),
+      taskId: [],
     }
     this.state.userList.map( (item) => {
       tmpTaskId.taskId.push(item.id)
@@ -214,7 +216,7 @@ class EvalRank extends Component {
 
     // 검색 조건에 따른 condition param setting
     // 검색 조건 : 월간
-    if(option == '월간') {
+    if(option === '월간') {
       // validation
       if(subOption >= 1 && subOption <= 12 ) {
         // subOption이 1~12인 경우..
@@ -244,23 +246,23 @@ class EvalRank extends Component {
       }      
     }
     // 검색 조건 : 분기 
-    else if(option == '분기') {
+    else if(option === '분기') {
       // validation
-      if(subOption == '1분기' || subOption == '2분기' || subOption == '3분기' || subOption == '4분기') {
+      if(subOption === '1분기' || subOption === '2분기' || subOption === '3분기' || subOption === '4분기') {
         
         // 분기별 시작날짜 종료날짜 setting
         let sDate = "";
         let eDate = "";
-        if(subOption == '1분기') {
+        if(subOption === '1분기') {
           sDate = childYear + "-01-01";
           eDate = childYear + "-03-31";       
-        } else if(subOption == '2분기') {
+        } else if(subOption === '2분기') {
           sDate = childYear + "-04-01";
           eDate = childYear + "-06-30";
-        } else if(subOption == '3분기') {
+        } else if(subOption === '3분기') {
           sDate = childYear + "-07-01";
           eDate = childYear + "-09-30";
-        } else if(subOption == '4분기') {
+        } else if(subOption === '4분기') {
           sDate = childYear + "-10-01";
           eDate = childYear + "-12-31";
         } 
@@ -287,16 +289,16 @@ class EvalRank extends Component {
       }      
     } 
     // 검색 조건 : 반기
-    else if(option == '반기') { 
+    else if(option === '반기') { 
       // validation     
-      if(subOption == '상반기' || subOption == '하반기') {
+      if(subOption === '상반기' || subOption === '하반기') {
         // 분기별 시작날짜 종료날짜 setting
         let sDate = "";
         let eDate = "";
-        if(subOption == "상반기") {        
+        if(subOption === "상반기") {        
           sDate = childYear + "-01-01";
           eDate = childYear + "-06-30";  
-        } else if(subOption == "하반기") {
+        } else if(subOption === "하반기") {
           sDate = childYear + "-07-01";
           eDate = childYear + "-12-31";  
         }
@@ -322,7 +324,7 @@ class EvalRank extends Component {
       }      
     } 
     // 검색 조건 : 년
-    else if(option == '년') {
+    else if(option === '년') {
       if(this.state.yearList.includes(subOption)) {
         // db에 있는 yearList에 subOption이 있으면.. -> true
         const param = {
@@ -348,14 +350,14 @@ class EvalRank extends Component {
     }
 
     // Table dataSourse setting
-    let list = new Array();
+    let list = [];
     let rankCount = 1;
 
     this.state.tmpResponse.map( (item) => {
       this.state.userList.map( (userListItem) => {
-        if(item.userTaskId == userListItem.id) {
+        if(item.userTaskId === userListItem.id) {
           const rank = {};
-          if(item.score != 'NaN') {
+          if(item.score !== 'NaN') {
             rank.rank = rankCount;
             rank.taskId = userListItem.id;
             rank.userId = userListItem.user.id;

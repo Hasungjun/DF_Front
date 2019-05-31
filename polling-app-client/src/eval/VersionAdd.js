@@ -53,7 +53,6 @@ class VersionAdd extends Component {
             states:"off",
         });
         <Link to="/ManageEvalItem"/>
-        console.log(this.state.data);
     }
     dataSourceCallback = (childDataSource) => {
         console.log(childDataSource);

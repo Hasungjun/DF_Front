@@ -110,11 +110,12 @@ class InfiniteListExample extends Component {
             </div>
 
       <div className="demo-infinite-container" style={{height:"100%"}}>
-        <InfiniteScroll
+        <InfiniteScroll 
           initialLoad={false}
           pageStart={0}       
           hasMore={!this.state.loading && this.state.hasMore}
           useWindow={false}
+         
         >
           <List 
             dataSource={this.state.data}
