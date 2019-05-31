@@ -100,10 +100,11 @@ class ItemTable extends Component {
     }, {
       title: '내용',
       dataIndex: 'content',
-      editable: this.props.editable
-    }];
+      editable: this.props.editable,
 
+    }];
     this.state = {
+
       dataSource: this.props.dataSource,
       count: 2,
       show: this.props.show, // modal=하단에 버튼 나타남,
@@ -147,13 +148,13 @@ class ItemTable extends Component {
     });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if(this.state.state === 'eval') {
       // console.log("here!");
       this.columns.concat({
         title: 'score',
         dataIndex: 'score',
-        editable: true        
+        editable: true,
       });
     }
   }
@@ -200,7 +201,6 @@ class ItemTable extends Component {
 
     return (
       <div>
-
         <Table
           components={components}
           rowClassName={() => 'editable-row'}
@@ -208,6 +208,7 @@ class ItemTable extends Component {
           dataSource={dataSource}
           columns={columns}
           pagination={false}
+          rowKey='dd'
         />
         {
           this.state.show === 'modal' ? (

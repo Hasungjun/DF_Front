@@ -50,14 +50,17 @@ class ManageEvalItem extends Component {
                         disabled={false} 
                         setVersion={this.setVersion}
                         updateVersion={this.state.updateVersion}
-                        changeItemList={this.changeItemList} />
+                        changeItemList={this.changeItemList}
+                         />
                     <ItemTable 
                         itemList={this.state.itemList}
-                        editable={false} />
+                        editable={false}
+                         />
                     <VersionAdd 
                         // refresh={ this.refresh }
                         setVersion={this.setVersion}
-                        changeItemList={this.changeItemList}/>
+                        changeItemList={this.changeItemList}
+                       />
                 </Card>
             </div>
         );

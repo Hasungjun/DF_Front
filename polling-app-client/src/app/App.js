@@ -112,9 +112,7 @@ class App extends Component {
         /></Sider>
       ];
     }
-
-
-
+    
     if (this.state.currentUser !== null && this.state.currentUser.authorities[0].authority === 'ROLE_ADMIN') {  
       admin = [<div key="admin">
         {/* 업무보고현황 */}
@@ -199,8 +197,9 @@ class App extends Component {
                       component={(props) => <Option3 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
 
                     {/* 관리자 메뉴 */}
+                    <Fragment>
                     {admin}
-
+                    </Fragment>
                     {/* <Route path="/Option1" 
                 render={(props) => <Option1 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props}  />}></Route> */}
 

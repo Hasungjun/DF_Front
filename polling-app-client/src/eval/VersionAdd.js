@@ -120,7 +120,8 @@ class VersionAdd extends Component {
                         getDataSource={this.dataSourceCallback}
                         states={this.state.states}
                         dataSource={this.state.data}
-                        editable={true} />
+                        editable={true}
+                        />
                     <div style={{ marginTop: "10px" }}>
                         <Form>
                             <FormItem>

@@ -94,6 +94,7 @@ class InfiniteListExample extends Component {
       
     this.props.clickButton(e.target.value,this.state.search);
    }
+   handleLoadMore(page) { /* load more items here */ }
   render() {
       const size = this.state.size;
     return (
@@ -112,7 +113,8 @@ class InfiniteListExample extends Component {
       <div className="demo-infinite-container" style={{height:"100%"}}>
         <InfiniteScroll 
           initialLoad={false}
-          pageStart={0}       
+          pageStart={0}    
+          loadMore={this.handleLoadMore}   
           hasMore={!this.state.loading && this.state.hasMore}
           useWindow={false}
          
@@ -122,7 +124,7 @@ class InfiniteListExample extends Component {
             renderItem={item => (
               <List.Item key={item.id}>
                 <List.Item.Meta
-                  avatar={<Avatar icon="user" size={80} src={BASE_URL+"test/"+item.profile} />}
+                   avatar={item.profile==null?<Avatar icon="user" size={80} />:<Avatar icon="user" size={80} src={BASE_URL+"test/"+item.profile} />}
                   title={<a href="https://ant.design">{item.name}</a>}
                   description={item.email}
                 />       
