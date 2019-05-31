@@ -88,7 +88,6 @@ class RankModal extends Component {
           footer={null}>
 
           <div>
-            <label>검색조건</label>
             <Select 
               style={{ marginLeft: 10, width: "100px" }}
               defaultValue="선택"
@@ -110,7 +109,7 @@ class RankModal extends Component {
             </Select>
             <Button 
               type="primary"
-              style={{marginLeft: 10, width: "50px"}}
+              style={{marginLeft: 10}}
               onClick={this.onClick}> 검색 </Button>
           </div>
           

@@ -21,7 +21,7 @@ class Option3 extends Component {
             reports: null,
             isLoading: false,
             from:d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(),
-            to:d.getFullYear()+'-'+(d.getMonth()+1)+'-'+(d.getDate()+1),
+            to:d.getFullYear()+'-'+(d.getMonth()+1)+'-'+(d.getDate()),
             userTaskId:null,
             search:'',
             columns: {

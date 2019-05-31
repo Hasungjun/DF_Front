@@ -5,7 +5,6 @@ import {
 } from 'react-router-dom';
 import main_ci from '../img/main-ci.png'
 import './AppHeader.css';
-import pollIcon from '../poll.svg';
 import { Layout, Menu, Dropdown, Icon } from 'antd';
 const Header = Layout.Header;
     

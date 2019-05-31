@@ -34,6 +34,7 @@ class SelectList extends Component {
             visible: false,
             dataTime:null,
             branch:null,
+            buttonnum:1,
             columns : [{
               title: '제목',
               dataIndex: 'title',
@@ -157,6 +158,9 @@ class SelectList extends Component {
     //  return <Button type="primary" onClick={this.createOnClick}>확인</Button>
     // }
   }
+  buttonclick(num){
+ 
+  } 
     render() {
     
         return (
@@ -169,20 +173,20 @@ class SelectList extends Component {
                         enterButton
                     />               
               <Tabs defaultActiveKey="1" onChange={callback}>
-                <TabPane tab="추가" key="1" >
+                <TabPane tab="추가" key="1" onClick={this.buttonclick(1)} >
                 <Table rowSelection={this.rowSelection} style={{height:"240px"}} columns={this.state.columns} dataSource={this.state.createArr}  pagination={false} scroll={{ y: 240 }} />     
                 <div style={{marginTop:"10px"}}>
                 {this.button(1)}
                 </div>
                 </TabPane>
-                <TabPane tab="삭제" key="2">
+                <TabPane tab="삭제" key="2" onClick={this.buttonclick(2)}>
                 <Table rowSelection={this.rowSelection} style={{height:"240px"}} columns={this.state.columns} dataSource={this.state.deleteArr} pagination={false} scroll={{ y: 240 }}/>
                 <div style={{marginTop:"10px"}}>
                 {this.button(2)}
                 </div>
                 </TabPane>   
               </Tabs>
-              
+              {this.button(this.state.buttonnum)}
 
               <Modal
                 title="기간선택"
