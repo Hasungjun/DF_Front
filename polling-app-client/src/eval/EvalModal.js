@@ -13,11 +13,13 @@ class EvalModal extends Component {
       super(props);
       this.state = {
         columns: [{
+          align: "center",
           title: '번호',
           dataIndex: 'itemNo',
           key: 'no',
           width: '20%'
         }, {
+          align: "center",
           title: '평가항목',
           dataIndex: 'content',
           key: 'content',

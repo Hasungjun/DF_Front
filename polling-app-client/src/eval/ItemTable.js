@@ -94,11 +94,11 @@ class ItemTable extends Component {
   constructor(props) {
     super(props);
     this.columns = [{
-      title: 'no',
+      title: '번호',
       dataIndex: 'itemNo',
       width: '20%'
     }, {
-      title: 'content',
+      title: '내용',
       dataIndex: 'content',
       editable: this.props.editable
     }];

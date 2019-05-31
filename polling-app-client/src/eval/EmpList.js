@@ -11,18 +11,22 @@ class EmpList extends Component {
     super(props);
     this.state = {
       columns: [{
+        align: "center",
         title: '사번',
         dataIndex: 'user.id',
         key: 'user_id'
       }, {
+        align: "center",
         title: '사원 이름',
         dataIndex: 'user.name',
         key: 'name'
       }, {
+        align: "center",
         title: '업무 시작일',
         dataIndex: 'startDate',
         key: 'start_date'
       }, {
+        align: "center",
         title: '업무 마감일',
         dataIndex: 'endDate',
         key: 'end_date',
@@ -44,6 +48,7 @@ class EmpList extends Component {
   componentWillMount() {
     this.setState({
       columns: this.state.columns.concat({
+        align: "center",
         title: '평가',
         dataIndex: 'evalId',
         key: 'evalId',

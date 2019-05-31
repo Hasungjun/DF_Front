@@ -12,16 +12,21 @@ class EvalRank extends Component {
     super(props);
     this.state = {
       columns: [{
-        title: '업무 번호',
+        width:"10%",
+        align: "center",
+        title: '번호',
         dataIndex: 'taskNo',
         key: 'taskNo',
-        ...this.getColumnSearchProps('taskNo')
       }, {
+        width:"30%",
+        align: "center",
         title: '업무 제목',
         dataIndex: 'title',
         key: 'title',
         ...this.getColumnSearchProps('title')
       }, {
+        width:"40%",
+        align: "center",
         title: '업무 내용',
         dataIndex: 'content',
         key: 'content',
@@ -32,6 +37,7 @@ class EvalRank extends Component {
       userList: null,
       rankList: null,
       yearList: [],
+      noCount: 1,
       tmpResponse: [],
     }
   }
@@ -83,11 +89,21 @@ class EvalRank extends Component {
       />
     ),
   })
+  handleSearch = (selectedKeys, confirm) => {
+    confirm();
+    this.setState({ searchText: selectedKeys[0] });
+  }
+  handleReset = (clearFilters) => {
+    clearFilters();
+    this.setState({ searchText: '' });
+  }
 
   componentWillMount() { 
     this.setState({
       columns: this.state.columns.concat({
-        title: '평가순위',
+        width:"20%",
+        align: "center",
+        title: '순위',
         dataIndex: 'rank',
         key: 'rank',
         render: (text, record) => {
@@ -124,12 +140,17 @@ class EvalRank extends Component {
     });
     getTask()
       .then(response => {
-        // console.log(response);
+        let orderBy = new Array();
+        let index = 0;
         response.map((item) => {
-          item.taskNo =  item.id;
+          orderBy.push(response[response.length - (++index)]);
+        });
+        orderBy.map((item) => {
+          item.taskNo =  this.state.noCount;
+          this.state.noCount = ++this.state.noCount;
         });
         this.setState({
-          evalDatas: response,
+          evalDatas: orderBy,
           isLoading: false
         });
       }).catch(error => {

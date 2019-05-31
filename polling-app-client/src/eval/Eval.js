@@ -17,16 +17,21 @@ class Eval extends Component {
     super(props);
     this.state = {
       columns: [{
+        align: "center",
+        width:"10%",
         title: '번호',
         dataIndex: 'taskNo',
         key: 'taskNo',
-        ...this.getColumnSearchProps('taskNo')
       }, {
+        width:"30%",
+        align: "center",
         title: '업무 제목',
         dataIndex: 'title',
         key: 'title',
         ...this.getColumnSearchProps('title')
       }, {
+        width:"40%",
+        align: "center",
         title: '업무 내용',
         dataIndex: 'content',
         key: 'content',
@@ -106,13 +111,17 @@ class Eval extends Component {
     // 팀장권한에서 전체 업무리스트보기
     getTask()
       .then(response => {
-        console.log(response);
+        let orderBy = new Array();
+        let index = 0;
         response.map((item) => {
+          orderBy.push(response[response.length - (++index)]);
+        });
+        orderBy.map((item) => {
           item.taskNo =  this.state.noCount;
           this.state.noCount = ++this.state.noCount;
         });
         this.setState({
-          evalDatas: response,
+          evalDatas: orderBy,
           isLoading: false
         });
       }).catch(error => {
@@ -134,6 +143,8 @@ class Eval extends Component {
     // 업무리스트 평가버튼
     this.setState({
       columns: this.state.columns.concat({
+        align: "center",
+        width:"20%",
         title: '평가',
         dataIndex: 'eval',
         key: 'eval',

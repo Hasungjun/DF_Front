@@ -12,13 +12,19 @@ class ManageEvalItem extends Component {
         this.state = {
             itemList: null,
             version: '',
-            updateVersion: false
+            updateVersion: false,
+            nCount: 1
         };
     }
 
     itemListCallback = (childItemList) => {
+        console.log(childItemList);
+        childItemList.map((item) => {
+            item.itemNo = this.state.nCount++;
+        })
         this.setState({
-            itemList: childItemList
+            itemList: childItemList,
+            nCount: 1
         });
     }
 
