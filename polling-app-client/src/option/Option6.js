@@ -10,6 +10,7 @@ class Option6 extends Component {
         this.state = {
             searchText: '',
             columns : [{
+                width:"35%",
                 align: "center",
                 title: '제목',
                 dataIndex: 'title',
@@ -17,6 +18,7 @@ class Option6 extends Component {
                 ...this.getColumnSearchProps('title')
               
               }, {
+                width:"50%",
                 align: "center",
                 title: '내용',
                 dataIndex: 'content',
@@ -28,6 +30,7 @@ class Option6 extends Component {
                   return  <div dangerouslySetInnerHTML={ {__html: text} }></div>
                 }
               },{
+                width:"15%",
                 align: "center",
                 title: '날짜',
                 dataIndex: 'createdAt',
