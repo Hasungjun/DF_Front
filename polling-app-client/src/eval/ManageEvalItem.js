@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Card } from 'antd';
 import VersionSelect from './VersionSelect';
-import ItemTable from './ItemTable';
 import VersionAdd from './VersionAdd';
 import './ManageEvalItem.css';
+import SelectedItemTable from './SelectedItemTable';
 
 
 class ManageEvalItem extends Component {
@@ -20,14 +20,17 @@ class ManageEvalItem extends Component {
     itemListCallback = (childItemList) => {
         childItemList.map((item) => {
             item.itemNo = this.state.nCount;
+            // item.key = this.state.nCount;
             this.setState({
                 nCount: this.state.nCount + 1
-            })
-        })
+            });
+            return null;
+        });
         this.setState({
             itemList: childItemList,
             nCount: 1
         });
+        // console.log(this.state.itemList);
     }
     setVersion = (childVersion) => {
         this.setState({
@@ -38,7 +41,7 @@ class ManageEvalItem extends Component {
     changeItemList = (toggle) => {
         this.setState({
             updateVersion: toggle
-        })
+        });
     }
     
     render() {
@@ -52,12 +55,10 @@ class ManageEvalItem extends Component {
                         updateVersion={this.state.updateVersion}
                         changeItemList={this.changeItemList}
                          />
-                    <ItemTable 
+                    <SelectedItemTable 
                         itemList={this.state.itemList}
-                        editable={false}
                          />
                     <VersionAdd 
-                        // refresh={ this.refresh }
                         setVersion={this.setVersion}
                         changeItemList={this.changeItemList}
                        />

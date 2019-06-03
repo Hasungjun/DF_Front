@@ -11,7 +11,7 @@ const error = (value) => {
 };
 
 function callback(key) {
-  console.log(key);
+  // (key);
 }
 
 class SelectList extends Component {
@@ -20,7 +20,6 @@ class SelectList extends Component {
     this.state = {
       tasks: this.props.tasks,
       columns: this.props.columns,
-      content: '',
       createArr: [],
       deleteArr: [],
       length: 0,
@@ -31,25 +30,22 @@ class SelectList extends Component {
       branch: null,
       buttonnum: 1,
       columns: [{
+        align: 'center',
         title: '제목',
         dataIndex: 'title',
         key: 'title',
         render: text => <a href="javascript:;">{text}</a>,
-      }, {
-        title: '내용',
-        dataIndex: 'content',
-        key: 'content',
       }]
     }
 
   }
   rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
-      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+      // console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
       this.setState({
         selectedRows: selectedRows
       });
-      console.log(this.state.selectedRows)
+      // console.log(this.state.selectedRows)
     },
     getCheckboxProps: record => ({
       disabled: record.status === 'disavble', // Column configuration not to be checked
@@ -59,8 +55,8 @@ class SelectList extends Component {
   }
 
   onChange = (value, dateString) => {
-    console.log('Selected Time: ', value);
-    console.log('Formatted Selected Time: ', dateString);
+    // console.log('Selected Time: ', value);
+    // console.log('Formatted Selected Time: ', dateString);
     this.setState({
       time: dateString
     });
@@ -68,11 +64,11 @@ class SelectList extends Component {
   }
 
   onOk(value) {
-    console.log('onOk: ', value);
+    // console.log('onOk: ', value);
   }
 
   showModal = (value) => {
-    console.log(value)
+    // console.log(value)
     if (this.state.selectedRows === null) {
       error('업무를 선택하지 않았습니다.');
     } else if (value === 'create') {
@@ -97,7 +93,7 @@ class SelectList extends Component {
   }
 
   handleCancel = (e) => {
-    console.log(e);
+    // console.log(e);
     this.setState({
       visible: false,
     });
@@ -127,7 +123,7 @@ class SelectList extends Component {
 
     }
 
-    console.log(this.state.deleteArr)
+    // console.log(this.state.deleteArr)
   }
   componentWillMount() {
     if (this.state.tasks != null) {

@@ -20,7 +20,7 @@ export function send(message, slackKey, slackChannel) {
     text: message,
     channel: '#' + slackChannel  // 전송될 채널 및 유저
   }, function (err, response) {
-    console.log(response);
+    // console.log(response);
   });
 }
 export function sendUser(message, reportId) {
@@ -32,15 +32,15 @@ export function sendUser(message, reportId) {
       text: message,
       channel: '#' + response.slackChannel  // 전송될 채널 및 유저
     }, function (err, response) {
-      console.log(response);
-      console.log(err)
+      // console.log(response);
+      // console.log(err)
     });
   }).catch(error => {
-    console.log(error)
+    // console.log(error)
   })
 
 
-  console.log(reportId)
+  // console.log(reportId)
 }
 
 

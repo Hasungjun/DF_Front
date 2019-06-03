@@ -29,7 +29,7 @@ class RegistrationForm extends React.Component {
           isLoading: false
         });
         this.success();
-        console.log(this.state.ok)
+        // console.log(this.state.ok)
       }).catch(error => {
         if (error.status === 404) {
           this.setState({
@@ -50,8 +50,8 @@ class RegistrationForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
-        console.log(values)
+        // console.log('Received values of form: ', values);
+        // console.log(values)
         this.load(values);
 
       }

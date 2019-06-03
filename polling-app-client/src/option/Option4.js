@@ -108,7 +108,7 @@ class Option4 extends Component {
       }
 
       componentWillMount(){
-        console.log(this.props.currentUser)
+        // console.log(this.props.currentUser)
       }
     
     render() {

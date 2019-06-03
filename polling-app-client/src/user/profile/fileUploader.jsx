@@ -14,23 +14,23 @@ export class FileUploader extends Component {
         const data = new FormData();
         //using File API to get chosen file
         let file = event.target.files[0];
-        console.log("Uploading file", event.target.files[0]);
+        // console.log("Uploading file", event.target.files[0]);
         data.append('file', event.target.files[0]);
         data.append('name', 'my_file');
         data.append('id', this.props.userId);
         let self = this;
         //calling async Promise and handling response or error situation
         this.fileService.uploadFileToServer(data).then((response) => {
-            console.log("File " + file.name + " is uploaded");
+            // console.log("File " + file.name + " is uploaded");
             this.props.refresh()
         }).catch(function (error) {
-            console.log(error);
+            // console.log(error);
             if (error.response) {
                 //HTTP error happened
-                console.log("Upload error. HTTP error/status code=",error.response.status);
+                // console.log("Upload error. HTTP error/status code=",error.response.status);
             } else {
                 //some other error happened
-               console.log("Upload error. HTTP error/status code=",error.message);
+               // console.log("Upload error. HTTP error/status code=",error.message);
             }
         });
         

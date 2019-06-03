@@ -34,7 +34,7 @@ class InfiniteListExample extends Component {
   
   onClick(id){
       this.props.search(id)
-      console.log('lu')
+      // console.log('lu')
   }
   componentDidMount() {
     this.load();

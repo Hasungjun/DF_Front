@@ -114,7 +114,7 @@ class TextEdit extends Component {
         this.setState({
             userTaskId: value
         })
-        console.log(`selected ${value}`);
+        // console.log(`selected ${value}`);
     }
     componentWillMount() {
         if (this.state.router === 'report') {
@@ -140,7 +140,7 @@ class TextEdit extends Component {
                 task.fileName = this.state.fileName;
                 task.userTaskId = this.state.userTaskId;
             }
-            console.log(this.props.currentUser)
+            // console.log(this.props.currentUser)
             this.loadCreateTask(task);
             if (this.state.router === 'report') {
             send(this.props.currentUser.name+' 이'+
@@ -179,7 +179,7 @@ class TextEdit extends Component {
 
     onUpload=(value)=>{
         var fileNameArr = value.map((num)=>num.name);
-        console.log(fileNameArr)
+        // console.log(fileNameArr)
         this.setState({
             fileName:fileNameArr
         })

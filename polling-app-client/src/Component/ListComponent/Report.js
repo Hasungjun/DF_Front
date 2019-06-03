@@ -75,7 +75,7 @@ class Report extends Component {
           }
         });
     } else if (this.state.route === 'task') {
-      console.log(this.state.value)
+      // console.log(this.state.value)
       //여기부터
       //getAllTask구현
       //column과 data 수정
@@ -86,7 +86,7 @@ class Report extends Component {
             isLoading: false
 
           });
-          console.log(this.state.datas);
+          // console.log(this.state.datas);
         }).catch(error => {
           if (error.status === 404) {
             this.setState({
@@ -104,7 +104,7 @@ class Report extends Component {
   }
 
   ModalLoad(state) {
-    console.log(state)
+    // console.log(state)
     this.setState({
       isLoading: true,
     });
@@ -142,7 +142,7 @@ class Report extends Component {
   progress = (idData, stateData, textArea, reportTitle) => {
     let state = { state: stateData, id: idData, description: textArea };
     this.ModalLoad(state);
-    console.log(state)
+    // (state)
     if (stateData === 'PROGRESS') {
       sendUser(reportTitle + '가 승인되었습니다.\n http://localhost:3000/Option3', idData);
     } else if (stateData === 'HOLD') {
@@ -178,7 +178,7 @@ class Report extends Component {
 
 
   componentWillMount() {
-    console.log(this.props.currentUser)
+    // console.log(this.props.currentUser)
 
     if (this.state.route === 'report') {
       this.setState({
@@ -208,7 +208,7 @@ class Report extends Component {
 
   onUserTaskChange = (value) => {
 
-    console.log(`selected ${value}`);
+    // console.log(`selected ${value}`);
     this.state.value.taskId = value;
     this.state.taskId = value
     this.load();
@@ -230,10 +230,11 @@ class Report extends Component {
     return (
       <div className="Option4">
         <div className='header'>
-          <Option4DatePick
+          
+        {this.state.route === 'report' ?   <Option4DatePick
             to={this.state.value.to} from={this.state.value.from}
             dateSearch={this.dateSearch} />
-
+            : null}
 
           {this.state.route === 'report' ? <Selecter onUserTaskChange={this.onUserTaskChange} userTask={this.state.userTask} userTaskId={this.state.taskId} />
             : null}

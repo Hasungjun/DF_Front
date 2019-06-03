@@ -24,7 +24,7 @@ class Option6 extends Component {
                
                 ...this.getColumnSearchProps('content'),
                 render: (text, row, index) => {
-                  console.log(text,row,index)
+                  // console.log(text,row,index)
                   return  <div dangerouslySetInnerHTML={ {__html: text} }></div>
                 }
               },{

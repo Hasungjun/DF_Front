@@ -116,12 +116,14 @@ class Eval extends Component {
 
         response.map((item) => {
           orderBy.push(response[response.length - (++index)]);
+          return null;
         });
         orderBy.map((item) => {
           item.taskNo =  this.state.nCount;
           this.setState({
             nCount: this.state.nCount+1
           });
+          return null;
         });
         this.setState({
           evalDatas: orderBy,
@@ -172,9 +174,17 @@ class Eval extends Component {
 
     getByTask(taskId)
       .then(response => {
+        response.map((item) => {
+          item.key = this.state.nCount;
+          this.setState({
+            nCount: this.state.nCount + 1
+          });
+          return null;
+        });
         this.setState({
           userTasks: response,
-          taskId: taskId
+          taskId: taskId,
+          nCount: this.state.nCount + 1
         });
 
         // 업무리스트에서 평가버튼을 누르면 업무를 가진 사원리스트 뜬다
@@ -186,6 +196,7 @@ class Eval extends Component {
           })
          }
         this.setState({
+          nCount: 1,
           isLoading: false
         });
       })
@@ -251,7 +262,7 @@ class Eval extends Component {
         //console.log(this.state.report);
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
     })
 
     if(this.state.buttonName === '수정') {
@@ -263,12 +274,14 @@ class Eval extends Component {
           response.map( (item) => {
             itemListArr.push(item.score.evalItem);
             scoreArr.push(item.score);
+            return null;
           });
           itemListArr.map((item) => {
             item.index = this.state.nCount;
             this.setState({
               nCount: this.state.nCount + 1 
             });
+            return null;
           });
           this.setState({
             itemList: itemListArr,
@@ -277,7 +290,7 @@ class Eval extends Component {
           });
         })
         .catch(error => {
-          console.log(error);
+          // console.log(error);
         });
 
       this.state.itemList.map( (item) => {
@@ -292,6 +305,7 @@ class Eval extends Component {
         this.setState({
           scores: [...this.state.scores, newData]
         });
+        return null;
       })
     } else if (this.state.buttonName === '평가') {
       // 최신 버전 가져와서 평가
@@ -303,7 +317,7 @@ class Eval extends Component {
           });
         })
         .catch(error => {
-          console.log(error)
+          // console.log(error)
         });      
       // 최신 버전이름으로 json 객체 가져오기
       await getVersionObj(this.state.version)
@@ -311,12 +325,14 @@ class Eval extends Component {
           let arr = [];
           response.map( (item) => {
             arr.push(item.evalItem);
+            return null;
           });
           arr.map((item) => {
             item.index = this.state.nCount;
             this.setState({
               nCount: this.state.nCount +1
             });
+            return null;
           });
           this.setState({
             score: [],
@@ -326,7 +342,7 @@ class Eval extends Component {
           });
         })
         .catch(error => {
-          console.log(error)
+          // console.log(error)
         })
 
       if(this.state.itemList === []) {
@@ -348,7 +364,8 @@ class Eval extends Component {
           }
           this.setState({
             scores: [...this.state.scores, newData]
-          })
+          });
+          return null;
         });
       }      
     }

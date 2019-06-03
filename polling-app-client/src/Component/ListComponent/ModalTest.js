@@ -27,7 +27,7 @@ class TabForm extends Component {
             });
 
         }
-        console.log(this.state.fileName)
+        // console.log(this.state.fileName)
     }
 
     showModal = () => {
@@ -37,14 +37,14 @@ class TabForm extends Component {
     }
 
     handleOk = (e) => {
-        console.log(e);
+        // console.log(e);
         this.setState({
             visible: false,
         });
     }
 
     handleCancel = (e) => {
-        console.log(e);
+        // console.log(e);
         this.setState({
             visible: false,
         });
@@ -93,7 +93,7 @@ class TabForm extends Component {
     }
 
     render() {
-        console.log(this.state.fileName)
+        // console.log(this.state.fileName)
         return (
             <div>
 

@@ -90,7 +90,7 @@ class Option1 extends Component {
             roomTitle: e.target.value
         });
        
-        console.log(e.target.value)
+        // console.log(e.target.value)
     }
   
     render () {

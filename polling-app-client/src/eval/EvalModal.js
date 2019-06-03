@@ -14,7 +14,6 @@ class EvalModal extends Component {
           align: "center",
           title: '번호',
           dataIndex: 'index',
-          key: 'no',
           width: '20%'
         }, {
           align: "center",
@@ -38,6 +37,7 @@ class EvalModal extends Component {
       if(item.score < -1 || item.score > 100) {
         scoreRange = true
       }
+      return null;
     });
 
     // validation
@@ -63,10 +63,10 @@ class EvalModal extends Component {
             });
           })
           .catch(error => {
-            console.log(error)
+            // console.log(error)
           });
       } else if(this.props.buttonName === '평가') {
-        console.log(evalUserTask);
+        // console.log(evalUserTask);
         setEvalScore(evalUserTask)
           .then(response => {
             notification.success({ // 옆에 표시 띄우기
@@ -75,7 +75,7 @@ class EvalModal extends Component {
             });
           })
           .catch(error => {
-            console.log(error);
+            // console.log(error);
             notification.error({
               message: 'Message',
               description: "평가저장을 실패하였습니다."
@@ -103,6 +103,7 @@ class EvalModal extends Component {
       if(record.itemNo === item.evalItem.itemNo) {
         this.state.scores[key].score = Number(inputValue);
       }
+      return null;
     });
   }
   
@@ -162,7 +163,8 @@ class EvalModal extends Component {
           <Table
             columns={this.state.columns}
             dataSource={this.state.itemList}
-            pagination={false} />
+            pagination={false}
+            rowKey="index" />
 
           <br/>
 

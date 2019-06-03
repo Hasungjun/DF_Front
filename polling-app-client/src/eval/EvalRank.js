@@ -127,7 +127,7 @@ class EvalRank extends Component {
         })
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     // this.getUserRank();    
@@ -144,12 +144,14 @@ class EvalRank extends Component {
         let index = 0;
         response.map((item) => {
           orderBy.push(response[response.length - (++index)]);
+          return null;
         });
         orderBy.map((item) => {
           item.taskNo =  this.state.noCount;
           this.setState({
             noCount: this.state.noCount + 1
-          })
+          });
+          return null;
         });
         this.setState({
           evalDatas: orderBy,
@@ -179,7 +181,7 @@ class EvalRank extends Component {
         })
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
   }
   
@@ -193,14 +195,15 @@ class EvalRank extends Component {
 
   
   scoreRank = async (childYear, option, subOption) => {
-    console.log(childYear +","+ option +","+ subOption);
+    // console.log(childYear +","+ option +","+ subOption);
 
     // 검색할 사원 list setting
     let tmpTaskId = {
       taskId: [],
     }
     this.state.userList.map( (item) => {
-      tmpTaskId.taskId.push(item.id)
+      tmpTaskId.taskId.push(item.id);
+      return null;
     });
 
     let existUserTask = [];
@@ -211,7 +214,7 @@ class EvalRank extends Component {
         existUserTask = response;
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       })
 
     // 검색 조건에 따른 condition param setting
@@ -236,7 +239,7 @@ class EvalRank extends Component {
             });          
           })
           .catch( error => {
-            console.log(error);
+            // console.log(error);
           });
       } else {
         notification.error({
@@ -278,7 +281,7 @@ class EvalRank extends Component {
             }); 
           })
           .catch(error => {
-            console.log(error);
+            // console.log(error);
           });
       } else {
         // validation
@@ -314,7 +317,7 @@ class EvalRank extends Component {
             }); 
           })
           .catch(error => {
-            console.log(error);
+            // console.log(error);
           });
       } else {
         notification.error({ // 옆에 표시 띄우기
@@ -338,7 +341,7 @@ class EvalRank extends Component {
             }); 
           })
           .catch(error => {
-            console.log(error);
+            // console.log(error);
           });
       } else {
         // validation
@@ -368,7 +371,9 @@ class EvalRank extends Component {
           list.push(rank);
           // console.log(list);
         }
+        return null;
       });
+      return null;
     });
     
     this.setState({

@@ -5,7 +5,7 @@ import { Tabs } from 'antd';
 const TabPane = Tabs.TabPane;
 
 function callback(key) {
-  console.log(key);
+  // console.log(key);
 }
 
 class TabForm extends Component {
