@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Report from '../Component/ListComponent/Report';
-import { Input, Button, Icon, Card } from 'antd';
+import { Input, Button, Icon, Card , Popconfirm} from 'antd';
 import Highlighter from 'react-highlight-words';
   
 
@@ -10,15 +10,14 @@ class Option6 extends Component {
         this.state = {
             searchText: '',
             columns : [{
-                width:"35%",
+                width:"30%",
                 align: "center",
                 title: '제목',
                 dataIndex: 'title',
                 key: 'title',
-                ...this.getColumnSearchProps('title')
-              
+                ...this.getColumnSearchProps('title')   
               }, {
-                width:"50%",
+                width:"45%",
                 align: "center",
                 title: '내용',
                 dataIndex: 'content',
@@ -41,11 +40,29 @@ class Option6 extends Component {
                   return <div>{date.getFullYear()+"-"+
                               (date.getMonth()+1)+"-"+
                               date.getDate()}</div>
+                },
+              },{
+                width:"10%",
+                align:'center',
+                title: '삭제',
+                dataIndex: 'id',
+                key: 'id',
+                
+                render: (text) => {
+                  let confirm = () => {
+                    this.loadDelete(text)
+                  }
+                  return <Popconfirm placement="top" title={'정말로 삭제하시겠습니까?'} onConfirm={confirm} okText="Yes" cancelText="No">
+                    <Button type="danger" ghost >삭제</Button>
+                  </Popconfirm>
                 }
-              }]
+              }
+              
+            ]
         }
       
     }
+
     
     getColumnSearchProps = (dataIndex) => ({
         filterDropdown: ({
