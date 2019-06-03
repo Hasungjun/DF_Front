@@ -44,7 +44,7 @@ class Option6 extends Component {
               },{
                 width:"10%",
                 align:'center',
-                title: '삭제',
+                title: '수정',
                 dataIndex: 'id',
                 key: 'id',
                 
@@ -53,7 +53,7 @@ class Option6 extends Component {
                     this.loadDelete(text)
                   }
                   return <Popconfirm placement="top" title={'정말로 삭제하시겠습니까?'} onConfirm={confirm} okText="Yes" cancelText="No">
-                    <Button type="danger" ghost >삭제</Button>
+                    <Button type="ghost"  >수정</Button>
                   </Popconfirm>
                 }
               }
